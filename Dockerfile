@@ -36,4 +36,9 @@ RUN mkdir build && cd build \
     && make package \
     && apt install ./cpackexample-0.1.0-Linux.deb
 
+RUN useradd -ms /bin/bash myuser
+
+# Switch to the new user
+USER myuser
+
 CMD ["/bin/bash"]
