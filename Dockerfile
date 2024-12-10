@@ -1,5 +1,6 @@
 From ubuntu:24.04
 
+WORKDIR /mnt/cpack-exercise
 # Install a few dependencies
 RUN apt-get -qq update && \
     apt-get -qq -y install \
@@ -24,5 +25,15 @@ RUN mkdir software && cd software && \
 ENV LIBRARY_PATH $LIBRARY_PATH:/usr/local/lib/
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib/
 ENV PATH $PATH:/usr/local/bin/
+
+COPY . .
+
+#The commands build the code using cmake and make. It then installs and make the debian package 
+RUN mkdir build && cd build \
+    && cmake -DCMAKE_INSTALL_PREFIX:PATH=/mnt/cpack-exercise/cpackexample .. \ 
+    && make -j \
+    && make install \
+    && make package \
+    && apt install ./cpackexample-0.1.0-Linux.deb
 
 CMD ["/bin/bash"]
