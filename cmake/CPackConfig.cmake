@@ -6,8 +6,6 @@ set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/Menkalian/cpack-exercise-wt24
 set(CPACK_GENERATOR "TGZ;DEB")
 set(CPACK_STRIP_FILES TRUE)
 
-
-
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "C++ code testing cpack and cmake along with packaging for Software simulation Engineering.")
  string(CONCAT CPACK_PACKAGE_DESCRIPTION
      "#${PROJECT_NAME}\n"
